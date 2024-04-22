@@ -27,15 +27,23 @@ perform_DGA<- function(matrix_data, meta_data, pop1, pop2) {
   colnames(design) <- gsub("group", "", colnames(design))
   fit <- lmFit(matrix_subset, design)
   
+<<<<<<< HEAD
   df.matrix <- makeContrasts(paste(pop2,pop1,sep = '-'), levels = design)
   print(df.matrix)
+=======
+  df.matrix <- makeContrasts(paste(pop1,pop2,sep = '-'), levels = design)
+>>>>>>> e6c2089825f9cb3583f54781d6459b327f532d0e
   fit <- contrasts.fit(fit, df.matrix)
   fit <- eBayes(fit)
   
   top_genes <- topTable(fit, number = 20, sort.by = "P")
   return(top_genes)
 }
+<<<<<<< HEAD
 #perform_DGA <- function(matrix_data, meta_data, pop1, pop2) {
+=======
+perform_DGA <- function(matrix_data, meta_data, pop1, pop2) {
+>>>>>>> e6c2089825f9cb3583f54781d6459b327f532d0e
   # Extract samples from specific groups
   samples_to_include <- meta_data$SampleID[meta_data$Population %in% c(pop1, pop2)]
   matrix_subset <- matrix_data[, samples_to_include]
